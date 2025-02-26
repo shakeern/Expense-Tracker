@@ -3,9 +3,11 @@ import styled from "styled-components";
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import { useGlobalContext } from "../../context/globalContext";
+import Button from "../Button/Button";
+import { plus } from '../../utils/icons'
 
 function Form(){
-    const {addIncome} = useGlobalContext()
+    const {addIncome, getIncomes} = useGlobalContext()
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -22,6 +24,14 @@ function Form(){
     const handleSubmit = e => {
         e.preventDefault()
         addIncome(inputState)
+        getIncomes()
+        setInputState({
+            title: '',
+            amount: '',
+            date: '',
+            category: '',
+            description: '',
+        })
     }
     return(
         <FormStyled onSubmit={handleSubmit}>
@@ -62,13 +72,21 @@ function Form(){
                     id="description" 
                     cols="30" 
                     rows="4" 
-                    maxLength={100}  // Change this to your desired max length
+                    maxLength={100}  
                     onChange={handleInput('description')}
                 ></textarea>
             </div>
 
             <div className="submit-btn">
-                <button>Add Income</button>
+                <Button 
+                    name={'Add Incone'}
+                    icon={plus}
+                    bPad={'.8rem 1.6rem'}
+                    bRad={'30px'}
+                    bg={'var(--color-accent'}
+                    color={'#fff'}
+                />
+
 
             </div>
         </FormStyled>
