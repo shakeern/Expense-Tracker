@@ -1,10 +1,10 @@
-Expense Tracker App
+**Expense Tracker App**
 
-Overview
+**Overview**
 
 This is a full-stack Expense Tracker application built using the MERN stack (MongoDB, Express.js, React, and Node.js). The app allows users to track their income, expenses, and investments. Users can also visualize their financial data through charts powered by Chart.js.
 
-Features
+**Features**
 
 Add, edit, and delete income, expenses, and investments
 
@@ -16,7 +16,7 @@ Interactive charts using Chart.js
 
 Responsive UI for a seamless experience 
 
-Tech Stack
+**Tech Stack**
 
 Frontend: React.js, Chart.js
 
