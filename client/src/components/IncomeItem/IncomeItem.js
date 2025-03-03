@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { dateFormat } from '../../utils/dateFormat';
-import { bag, bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/icons'
+import { bag, bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, house, investy, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/icons'
 import Button from '../Button/Button';
 
 function IncomeItem({
@@ -41,6 +41,8 @@ function IncomeItem({
 
     const expenseCatIcon = () => {
         switch (category) {
+            case 'housing':
+                return house;
             case 'education':
                 return book;
             case 'groceries':
@@ -61,14 +63,35 @@ function IncomeItem({
                 return ''
         }
     }
+    const investmentCatIcon = () =>{
+        switch(category) {
+            case 'stocks':
+                return stocks;
+            case 'crypto':
+                return bitcoin
+            case 'realestate':
+                return house;
+            case 'bonds':
+                return bag;
+            case 'other':
+                return piggy;
+            default:
+                return investy;
+        }
+    }
 
     console.log('type', type)
 
     return (
         <IncomeItemStyled indicator={indicatorColor}>
             <div className="icon">
-                {type === 'expense' ? expenseCatIcon() : categoryIcon()}
+            {type === 'expense' 
+                ? expenseCatIcon() 
+                : type === 'Investment' 
+                ? investmentCatIcon() 
+                : categoryIcon()}
             </div>
+
             <div className="content">
                 <h5>{title}</h5>
                 <div className="inner-content">

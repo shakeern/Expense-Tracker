@@ -13,6 +13,6 @@ router.post('/add-income', addIncome)
     .delete('/delete-expense/:id', deleteExpense)
     .post('/add-investment', addInvestment)
     .get('/get-investments', getInvestments)
-    .delete('/delete-investment', deleteInvestment)
+    .delete('/delete-investment/:id', deleteInvestment)
 
 module.exports = router

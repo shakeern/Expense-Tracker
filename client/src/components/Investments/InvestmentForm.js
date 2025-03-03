@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css"
-import { useGlobalContext } from "../../context/globalContext";
-import Button from "../Button/Button";
-import { plus } from '../../utils/icons'
+import "react-datepicker/dist/react-datepicker.css";
+import { useGlobalContext } from '../../context/globalContext';
+import Button from '../Button/Button';
+import { plus } from '../../utils/icons';
 
-function Form(){
-    const {addIncome, getIncomes, error} = useGlobalContext()
+
+function InvestmentForm() {
+    const {addInvestment, error} = useGlobalContext()
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -15,16 +16,17 @@ function Form(){
         category: '',
         description: '',
     })
+
     const { title, amount, date, category,description } = inputState;
 
     const handleInput = name => e => {
         setInputState({...inputState, [name]: e.target.value})
+        
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        addIncome(inputState)
-        getIncomes()
+        addInvestment(inputState)
         setInputState({
             title: '',
             amount: '',
@@ -33,69 +35,68 @@ function Form(){
             description: '',
         })
     }
-    return(
-        <FormStyled onSubmit={handleSubmit}>
+
+    return (
+        <InvestmentFormStyled onSubmit={handleSubmit}>
             {error && <p className="error">{error}</p>}
             <div className="input-control">
-                <input type="text" value={title} name="title" placeholder="Salary Title" onChange={handleInput('title')}></input>
+                <input 
+                    type="text" 
+                    value={title}
+                    name={'title'} 
+                    placeholder="Investment Title"
+                    onChange={handleInput('title')}
+                />
             </div>
             <div className="input-control">
-                <input type="text" value={amount} name="amount" placeholder="Salary Amount" onChange={handleInput('amount')}></input>
+                <input value={amount}  
+                    type="text" 
+                    name={'amount'} 
+                    placeholder={'Investment Amount'}
+                    onChange={handleInput('amount')} 
+                />
             </div>
             <div className="input-control">
-                <DatePicker id='date' 
-                placeholderText="Enter A Date" 
-                selected={date} 
-                dateFormat='dd/MM/yyyy' 
-                onChange={(date) => {
-                    setInputState({...inputState, date: date})
-                }}
+                <DatePicker 
+                    id='date'
+                    placeholderText='Enter A Date'
+                    selected={date}
+                    dateFormat="dd/MM/yyyy"
+                    onChange={(date) => {
+                        setInputState({...inputState, date: date})
+                    }}
                 />
             </div>
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value=""  disabled >Select Option</option>
-                    <option value="salary">Salary</option>
-                    <option value="freelancing">Freelancing</option>
-                    <option value="investments">Investments</option>
+                    <option value="" disabled >Select Option</option>
                     <option value="stocks">Stocks</option>
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="bank">Bank Transfer</option>  
-                    <option value="Social Media">Social Media</option>  
-                    <option value="other">Other</option>  
+                    <option value="crypto">Crypto</option>
+                    <option value="realestate">Real Estate</option>
+                    <option value="bonds">Bonds</option>
+                    <option value="other">Other</option>
+                    
                 </select>
             </div>
             <div className="input-control">
-                <textarea 
-                    name="description" 
-                    value={description} 
-                    placeholder="Add A Reference" 
-                    id="description" 
-                    cols="30" 
-                    rows="4" 
-                    maxLength={100}  
-                    onChange={handleInput('description')}
-                ></textarea>
+                <textarea name="description" value={description} placeholder='Add A Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
             </div>
-
             <div className="submit-btn">
                 <Button 
-                    name={'Add Incone'}
+                    name={'Add Expense'}
                     icon={plus}
                     bPad={'.8rem 1.6rem'}
                     bRad={'30px'}
                     bg={'var(--color-accent'}
                     color={'#fff'}
                 />
-
-
             </div>
-        </FormStyled>
+        </InvestmentFormStyled>
     )
 }
 
 
-const FormStyled = styled.form`
+const InvestmentFormStyled = styled.form`
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -140,6 +141,5 @@ const FormStyled = styled.form`
             }
         }
     }
-
 `;
-export default Form
+export default InvestmentForm

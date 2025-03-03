@@ -28,3 +28,5 @@ export const medical = <i className="fa-solid fa-briefcase-medical"></i>
 export const tv = <i className="fa-solid fa-tv"></i>
 export const circle = <i className="fa-solid fa-circle-dot"></i>
 export const bag = <i className="fa-solid fa-sack-dollar"></i>
+export const house = <i class="fa-solid fa-house"></i>
+export const investy = <i class="fa-solid fa-money-bill-trend-up"></i>
